@@ -55,8 +55,12 @@ public class Homework2 {
 	// Q5
 	public void withoutFour(int highest) {
 		int choice = 0;
-		for (int i = 0; i < highest / 10; i++) {
-			for (int j = 0; j <= 9; j++) {
+		for (int i = 0; i <= highest / 10; i++) {
+			int ones = 9;
+			if (i == highest / 10) {
+				ones = highest % 10;
+			} 
+			for (int j = 0; j <= ones; j++) {
 				if (i == 4 || j == 4 || i == 0 && j == 0) {
 					continue;
 				} else {
