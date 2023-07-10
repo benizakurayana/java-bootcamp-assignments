@@ -2,7 +2,7 @@ package myPractice;
 
 import java.util.Iterator;
 
-public class java1Exam1 {
+public class Java1Exam1 {
 	public static void main(String[] args) {
 		// Q17	
 		int binary = 0b1111;
@@ -18,19 +18,19 @@ public class java1Exam1 {
 		System.out.println(i2-i1);
 		
 		// Q24
-		int valid = 0;
-		if (valid) {
-		    System.out.println("valid");
-		} else {
-		    System.out.println("not valid");
-		}
+//		int valid = 0;
+//		if (valid) {
+//		    System.out.println("valid");
+//		} else {
+//		    System.out.println("not valid");
+//		}
 		
 		// Q19
 		int sum = 0, number = 3;
 
 		if (number % 2 == 0) {
 		    System.out.println(sum++);
-		    break;
+//		    break;
 		} else {
 		    for (int i = 0; i < number; i++) {
 		        sum += i;
