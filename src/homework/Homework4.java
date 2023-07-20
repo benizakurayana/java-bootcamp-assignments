@@ -226,7 +226,8 @@ public class Homework4 {
 
 		boolean isLeapYear = false;
 		boolean isSmallMonth = false;
-
+		int[] month30days = { 4, 6, 9, 11 };  // 小月
+		
 		while (true) {
 			year = sc.nextInt();
 			month = sc.nextInt();
@@ -249,7 +250,6 @@ public class Homework4 {
 				isLeapYear = true;
 			}
 
-			int[] month30days = { 4, 6, 9, 11 };  // 小月
 			isSmallMonth = Arrays.binarySearch(month30days, month) >= 0;
 
 			if (day > 31 || day <= 0) {
@@ -279,7 +279,7 @@ public class Homework4 {
 				dayOfYear += 29;
 			} else if (i == 2 && !isLeapYear) {
 				dayOfYear += 28;
-			} else if (isSmallMonth) {
+			} else if (Arrays.binarySearch(month30days, i) >= 0) {
 				dayOfYear += 30;
 			} else {
 				dayOfYear += 31;
