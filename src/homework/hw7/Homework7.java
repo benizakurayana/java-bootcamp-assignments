@@ -1,19 +1,22 @@
 package homework.hw7;
-
+// File
 import java.io.File;
+// Input
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.EOFException;
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.io.ObjectInputStream;
+// Output
+import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
 import java.io.ObjectOutputStream;
+// Exception
+import java.io.EOFException;
+import java.io.IOException;
 
 public class Homework7 {
 	public static void main(String[] args) throws Exception{
@@ -25,7 +28,7 @@ public class Homework7 {
 		// Q3
 		hw7.copyFile(new File("src\\homework\\hw7\\Hyejin.png"), new File("src\\homework\\hw7\\Hyejin_copy.png"));
 		// Q4
-		
+		hw7.objectPersistence();
 		// Q5
 		hw7.objectPersistenceImprove();
 	}
@@ -94,6 +97,11 @@ public class Homework7 {
 
 	// Q3
 	public void copyFile(File origin, File copy) {
+		/**
+		 * Copies a specified file to another file.
+		 * @param origin the source file.
+		 * @param copy the destination file. 
+		 */
 		try {
 			FileInputStream fis = new FileInputStream(origin);
 			BufferedInputStream bis = new BufferedInputStream(fis);
@@ -101,8 +109,8 @@ public class Homework7 {
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			int c;
 			
-			while ((c = fis.read()) != -1) {
-				fos.write(c);
+			while ((c = fis.read()) != -1) {  // Use c to store the next byte of data when invoking fis.read(),
+				fos.write(c);                 // because each time fis.read() is invoked, the pointer will move to the next byte.
 			}
 			bis.close();
 			fis.close();
@@ -114,44 +122,107 @@ public class Homework7 {
 	}
 	
 	// Q4
-	
-	
-	
-	// Q5 
-	public void objectPersistenceImprove() throws Exception {
+	public void objectPersistence() {
+		/**
+		 * Creates two objects of each Cat and Dog classes, write them to a .ser file,
+		 * and read them to invoke speak() method. 
+		 */
 		Cat c1 = new Cat("Ian");
 		Cat c2 = new Cat("Josh");
 		Dog d1 = new Dog("Alicia");
 		Dog d2 = new Dog("Jane");
 		
-		File dir = new File("C:\\data");
-		dir.mkdir();
-		File file = new File("C:\\data\\Object.ser");
-		FileOutputStream fos = new FileOutputStream(file);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(c1);
-		oos.writeObject(c2);
-		oos.writeObject(d1);
-		oos.writeObject(d2);
-		
-		oos.close();
-		fos.close();
-		
-		FileInputStream fis = new FileInputStream(file);
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		System.out.println(file.getName() + "檔案內容如下: ");
-		System.out.println("--------------------");
 		try {
-			while (true) {
-				Object o = ois.readObject();
-				((Cutie) o).speak();
-				System.out.println("--------------------");
+			// Make directory C:\data.
+			File dir = new File("C:\\data\\");
+			dir.mkdir();
+		
+			// Output
+			FileOutputStream fos = new FileOutputStream("C:\\data\\Object.ser");
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			
+			oos.writeObject(c1);
+			oos.writeObject(c1);
+			oos.writeObject(d1);
+			oos.writeObject(d2);
+			
+			oos.close();
+			bos.close();
+			fos.close();
+			
+			// Input
+			FileInputStream fis = new FileInputStream("C:\\data\\Object.ser");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			Object o;
+			while((o = ois.readObject()) != null) {  // Need to type cast in order to use speak() method.
+				if (o instanceof Cat) {
+					((Cat)o).speak();
+				} else if (o instanceof Dog) {
+					((Dog)o).speak();
+				}
+
 			}
-		} catch (EOFException e) {
-			System.out.println("資料讀取完畢！");
+			
+			ois.close();
+			bis.close();
+			fis.close();	
+		} catch (IOException e) {
+			System.out.println("資料讀取完畢");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-		ois.close();
-		fis.close();
-	}	
+	}
 	
+	
+	// Q5 
+	public void objectPersistenceImprove() throws Exception {
+		/**
+		 * A improved version of objectPersistence() method by the application of polymorphism. 
+		 */
+		Cutie c1 = new Cat("Ian");
+		Cutie c2 = new Cat("Josh");
+		Cutie d1 = new Dog("Alicia");
+		Cutie d2 = new Dog("Jane");
+		
+		try {
+			// Make directory C:\data.
+			File dir = new File("C:\\data\\");
+			dir.mkdir();
+		
+			// Output
+			FileOutputStream fos = new FileOutputStream("C:\\data\\Object.ser");
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			
+			oos.writeObject(c1);
+			oos.writeObject(c1);
+			oos.writeObject(d1);
+			oos.writeObject(d2);
+			
+			oos.close();
+			bos.close();
+			fos.close();
+			
+			// Input
+			FileInputStream fis = new FileInputStream("C:\\data\\Object.ser");
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			
+			Cutie o;  
+			while((o = (Cutie)ois.readObject()) != null) {
+					o.speak();  // Both Cat and Dog classes implement Cutie interface. No need to type cast.
+			}
+			
+			ois.close();
+			bis.close();
+			fis.close();	
+		} catch (IOException e) {
+			System.out.println("資料讀取完畢");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
