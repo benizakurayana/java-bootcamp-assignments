@@ -1,0 +1,11 @@
+Hero有三種種族(Human/NightElf/Slime) 各種族會使用特有的技能 
+
+不論種族都可以搭配三種職業(Swordman/Arrowman/Mage) 
+但我故意嘗試設計想讓Slime鎖死Mage 不知道圖面上要怎麼表達XD
+
+物品分為一般物品(圖面上先用Potion頂著)和裝備(Equipment)
+
+Slime可以吞掉Equipment和Hero 但一般物品不能吞
+ 
+根據職業會限制能裝備的武器(Weapon) 而防具(Armor)和鞋子(Shoes)則是各職業通用
+Sword/Bow/Wand理論上應該要是super class 然後下面再繼承真正的武器 像Spell那邊一樣 但我好累想先休息了QQ
