@@ -1,5 +1,10 @@
 package homework.hw9;
 
+/**
+ * This program simulates a scenario where two threads read and write one shared
+ * object with synchronization and cause a deadlock. 
+ */
+
 public class MomSonDeadLock {
 	public static void main(String[] args) {
 		Account acc = new Account();

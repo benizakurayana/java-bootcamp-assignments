@@ -1,7 +1,11 @@
 package homework.hw9;
 
+/**
+ * This program solves the deadlock in MomSonDeadLock.java.
+ */
+
 public class MomSonDeadLockSolved {
-	public static boolean isCompleted = false;
+	public static boolean isCompleted = false;  // If a thread is completed, it should be set true.
 	
 	public static void main(String[] args) {
 		Account2 acc = new Account2();
@@ -50,10 +54,6 @@ class Mom2 implements Runnable {
 	}
 
 	public void financialSupport() {
-<<<<<<< HEAD
-=======
-
->>>>>>> d67178bce69fece62b2f2d31b9fef436cf63d570
 		while (acc.getBalance() > 3000) {
 			if (MomSonDeadLockSolved.isCompleted == true) {
 				return;
@@ -73,11 +73,7 @@ class Mom2 implements Runnable {
 	}
 
 	public void run() {
-<<<<<<< HEAD
-		for (int i = 1; i < 11; i++) {
-=======
 		for (int i = 1; i < 100; i++) {
->>>>>>> d67178bce69fece62b2f2d31b9fef436cf63d570
 			if (MomSonDeadLockSolved.isCompleted == true) {
 				break;
 				}
@@ -118,23 +114,16 @@ class Son2 implements Runnable {
 			System.out.println(name + "領了1000，帳戶共有：" + acc.getBalance());
 			if (acc.getBalance() < 2000) {
 				System.out.println(name + "看到餘額在2000以下，要求匯款");
-<<<<<<< HEAD
+
 				acc.notify();
-=======
-//				acc.notify();
->>>>>>> d67178bce69fece62b2f2d31b9fef436cf63d570
 				System.out.println("\t\t\t媽媽被熊大要求匯款！");
 			}
 			acc.notify();
-			
 	}
 
 	public void run() {
-<<<<<<< HEAD
 		for (int i = 1; i < 11; i++) {
-=======
-		for (int i = 1; i < 100; i++) {
->>>>>>> d67178bce69fece62b2f2d31b9fef436cf63d570
+
 			if (MomSonDeadLockSolved.isCompleted == true) {
 				break;
 			}
