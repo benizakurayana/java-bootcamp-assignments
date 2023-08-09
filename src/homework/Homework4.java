@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Homework4 {
 //	static Scanner sc = new Scanner(System.in);
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		Homework4 hw4 = new Homework4();
 		
@@ -24,6 +25,7 @@ public class Homework4 {
 		hw4.countDayOfTheYear();
 		// Q6
 		hw4.countTimesOfBest();
+		
 		hw4.sc.close();
 	}
 	

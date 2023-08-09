@@ -3,26 +3,27 @@ package homework.hw5;
 import java.util.Scanner;
 
 public class Homework5 {
-	static Scanner sc = new Scanner(System.in);
+//	static Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		Homework5 hw = new Homework5();
+		Homework5 hw5 = new Homework5();
 		
 		// Q1
 		System.out.println("請輸入寬與高：(請以空格或enter鍵隔開)");
-		hw.starSquare(sc.nextInt(), sc.nextInt()); 
+		hw5.starSquare(hw5.sc.nextInt(), hw5.sc.nextInt()); 
 		
 		// Q2
-		hw.randAvg();
+		hw5.randAvg();
 		
 		// Q3
 		int[][] intArray = { { 1, 6, 3 }, { 9, 5, 2 } };
 		double[][] doubleArray = { { 1.2, 3.5, 2.2 }, { 7.4, 2.1, 8.2 } };
-		System.out.println(hw.maxElement(intArray));
-		System.out.println(hw.maxElement(doubleArray));
+		System.out.println(hw5.maxElement(intArray));
+		System.out.println(hw5.maxElement(doubleArray));
 		
 		// Q5
-		System.out.println("本次隨機產生驗證碼為：" + hw.genAuthCode());
+		System.out.println("本次隨機產生驗證碼為：" + hw5.genAuthCode());
 		
 	}
 	// Q1

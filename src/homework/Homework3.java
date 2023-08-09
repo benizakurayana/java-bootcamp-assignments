@@ -4,15 +4,20 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Homework3 {
-	static Scanner sc = new Scanner(System.in); // Suggested by Vic(耀升學長) to prevent the error of closing scanners.
-
+//	static Scanner sc = new Scanner(System.in); 
+	private Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		Homework3 hw3 = new Homework3();
-
+		
+		// Q1
 		hw3.distinguishTriangle();
+		// Q2
 		hw3.guessNumber();
+		// Q3
 		hw3.lotteryPickNum();
-		sc.close();
+		
+		hw3.sc.close();
 	}
 
 	// Q1
@@ -211,8 +216,7 @@ public class Homework3 {
 		for (int randomIndex : randomIndices) {
 			System.out.print(choices[randomIndex] + "\t");
 		}
-		System.out.println(remainingNum+" "+ index);
-
+//		System.out.println(remainingNum+" "+ index);
 	}
 
 }

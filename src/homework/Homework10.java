@@ -1,21 +1,30 @@
 package homework;
 
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
+import java.text.Format;
 import java.text.DecimalFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Homework10 {
 	Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
 		Homework10 hw10 = new Homework10();
 		
+		// Q1
 		hw10.randomAndIsPrime();
+		// Q2
 		hw10.chooseNumFormat();
+		// Q3
+		hw10.chooseDateFormat();
 		
 		hw10.sc.close();
 		}
-
+	
+	// Q1
 	public void randomAndIsPrime() {
 		/**
 		 * Generates five random integers, determine if they are prime numbers and prints the results.
@@ -62,15 +71,17 @@ public class Homework10 {
 		System.out.println();
 	}
 	
+	// Q2
 	public void chooseNumFormat() {
 		/**
 		 * Takes user input of a number and asks user to choose the desired format: 
 		 * (1) for thousand separators 
 		 * (2) for percentage
 		 * (3) for scientific notation 
-		 * This method then formats the number accordingly and prints the result by using DecimalFormat class.
+		 * This method then formats the number accordingly and prints the result by using DecimalFormat objects.
 		 * It uses regular expressions to validate the user inputs of number and format option are entered correctly. 
 		 */
+		// Take number input.
 		System.out.print("請輸入數字：");
 		String s = sc.next();
 		while (!s.matches("^[+-]?\\d+(\\.\\d+)?$")) {
@@ -80,6 +91,7 @@ public class Homework10 {
 		}
 		double number = Double.parseDouble(s);
 		
+		// Take option input.
 		System.out.print("欲格式化成(1)千分位(2)百分比(3)科學記號：");
 		s = sc.next();
 		while (!s.matches("^[1-3]$")) {
@@ -89,32 +101,80 @@ public class Homework10 {
 		}
 		int option = Integer.parseInt(s);
 		
+		// Print the result.
 		switch (option) {
 			case 1:
-				DecimalFormat df = new DecimalFormat("#,###");
+				Format df = new DecimalFormat("#,###");
 				System.out.println("千分位數字：" + df.format(number));
 				break;
 			case 2:
-				DecimalFormat df2 = new DecimalFormat("0%");
+				Format df2 = new DecimalFormat("0%");
 				System.out.println("百分比數字：" + df2.format(number));
 				break;
 			case 3:
-				DecimalFormat df3 = new DecimalFormat("0.00E00");
+				Format df3 = new DecimalFormat("0.00E00");
 				System.out.println("科學記號數字：" + df3.format(number));
 		}
 		
 		System.out.println();
 	}
 	
+	// Q3
 	public void chooseDateFormat() {
 		/**
 		 * Takes user input of a date and asks user to choose the desired format: 
 		 * (1) for year/month/day 
 		 * (2) for month/day/year
 		 * (3) for day/month/year 
-		 * This method then formats the date accordingly and prints the result by using _________________
+		 * This method then formats the date accordingly and prints the result by using SimpleDateFormat objects.
 		 * It uses regular expressions to validate the user inputs of date and format option are entered correctly.
 		 */
-
+		// Take date input.
+		System.out.print("請輸入日期(年月日，例如20110131)：");
+		String s = sc.next();
+		Date date = null;
+		while (true) {
+			if (s.matches("^\\d{8}$")) {  // Check if input matches eight digits.
+				String inputPattern = "yyyyMMdd";
+				SimpleDateFormat df = new SimpleDateFormat(inputPattern);
+				df.setLenient(false);  // Strict parsing: 20230631 will not be transformed into 20230701.
+				
+				try {
+					date = df.parse(s);  // Check if input is a valid date.
+					break;
+				} catch (ParseException e) {
+					System.out.println("此日期不存在，請再輸入一次！");
+				}
+			} else {
+				System.out.println("日期格式不正確，請再輸入一次！");
+			}
+			System.out.print("請輸入日期(年月日，例如20110131)：");
+			s = sc.next();
+		}
+		
+		// Take option input.
+		System.out.print("欲格式化成(1)年/月/日(2)月/日/年(3)日/月/年：");
+		s = sc.next();
+		while (!s.matches("^[1-3]$")) {
+			System.out.println("選項格式不正確，請再輸入一次！");
+			System.out.print("欲格式化成(1)年/月/日(2)月/日/年(3)日/月/年：");
+			s = sc.next();
+		}
+		int option = Integer.parseInt(s);
+		
+		// Print the result.
+		switch (option) {
+		case 1:
+			Format df = new SimpleDateFormat("yyyy/MM/dd");
+			System.out.println("年/月/日：" + df.format(date));
+			break;
+		case 2:
+			Format df2 = new SimpleDateFormat("MM/dd/yyyy");
+			System.out.println("月/日/年：" + df2.format(date));
+			break;
+		case 3:
+			Format df3 = new SimpleDateFormat("dd/MM/yyyy");
+			System.out.println("日/月/年：" + df3.format(date));
+		}
 	}
 }
