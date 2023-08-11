@@ -4,7 +4,7 @@ package homework.hw9;
  * This program solves the deadlock in MomSonDeadLock.java.
  */
 
-public class MomSonDeadLockSolved {
+public class MomSonDeadLockSolveAttempt {
 	public static boolean isCompleted = false;  // If a thread is completed, it should be set true.
 	
 	public static void main(String[] args) {
@@ -55,7 +55,7 @@ class Mom2 implements Runnable {
 
 	public void financialSupport() {
 		while (acc.getBalance() > 3000) {
-			if (MomSonDeadLockSolved.isCompleted == true) {
+			if (MomSonDeadLockSolveAttempt.isCompleted == true) {
 				return;
 			}
 			System.out.println(name + "看到餘額在3000以上，停止匯款");
@@ -73,8 +73,8 @@ class Mom2 implements Runnable {
 	}
 
 	public void run() {
-		for (int i = 1; i < 100; i++) {
-			if (MomSonDeadLockSolved.isCompleted == true) {
+		for (int i = 1; i < 1100000000; i++) {
+			if (MomSonDeadLockSolveAttempt.isCompleted == true) {
 				break;
 				}
 			System.out.println(name + "的回合======" + i);
@@ -82,7 +82,7 @@ class Mom2 implements Runnable {
 				financialSupport();
 			}
 		}
-		MomSonDeadLockSolved.isCompleted = true;
+		MomSonDeadLockSolveAttempt.isCompleted = true;
 		System.out.println("媽媽執行完成");
 	}
 }
@@ -99,7 +99,7 @@ class Son2 implements Runnable {
 	public void educationalExpense() {
 		
 		while (acc.getBalance() < 1000) {
-			if (MomSonDeadLockSolved.isCompleted == true) {
+			if (MomSonDeadLockSolveAttempt.isCompleted == true) {
 				return;
 			}
 			System.out.println(name + "看到帳戶沒錢，暫停提款");
@@ -122,9 +122,9 @@ class Son2 implements Runnable {
 	}
 
 	public void run() {
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i < 11000000; i++) {
 
-			if (MomSonDeadLockSolved.isCompleted == true) {
+			if (MomSonDeadLockSolveAttempt.isCompleted == true) {
 				break;
 			}
 			System.out.println(name + "的回合======" + i);
@@ -132,7 +132,7 @@ class Son2 implements Runnable {
 				educationalExpense();
 			}
 		}
-		MomSonDeadLockSolved.isCompleted = true;
+		MomSonDeadLockSolveAttempt.isCompleted = true;
 		System.out.println("熊大執行完成");
 	}
 }
