@@ -1,18 +1,23 @@
-/.metadata/
-# Compiled class file
+# Compiled class files
 *.class
-/bin
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+bin/
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Log Files
+*.log
+*.log.*
+log/
+logs/
+
+# Eclipse files
+.settings/
+.classpath
+.project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
