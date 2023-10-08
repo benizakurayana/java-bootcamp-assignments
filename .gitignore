@@ -17,6 +17,7 @@ logs/
 .settings/
 .classpath
 .project
+.metadata/
 
 # OS-specific files
 .DS_Store
